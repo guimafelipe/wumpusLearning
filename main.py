@@ -6,17 +6,18 @@ M = 8
 
 def move(i, j, ut, bo): # N = 0, L = 1, S = 2, O = 3
     rf = bo.board[i][j].r
-    value, direction = rf + 0.6*ut.get(i-1,j) + 0.4*ut.get(i,j+1), 0
+    gamma = 0.9
+    value, direction = rf + gamma*(0.6*ut.get(i-1,j) + 0.4*ut.get(i,j+1)), 0
 
-    curr_val = rf + 0.6*ut.get(i,j-1) + 0.4*ut.get(i-1,j)
+    curr_val = rf + gamma*(0.6*ut.get(i,j-1) + 0.4*ut.get(i-1,j))
     if curr_val > value:
         value, direction = curr_val, 1
 
-    curr_val = rf + 0.6*ut.get(i+1,j) + 0.4*ut.get(i,j-1)
+    curr_val = rf + gamma*(0.6*ut.get(i+1,j) + 0.4*ut.get(i,j-1))
     if curr_val > value:
         value, direction = curr_val, 2
 
-    curr_val = rf + 0.6*ut.get(i,j+1) + 0.4*ut.get(i+1,j)
+    curr_val = rf + gamma*(0.6*ut.get(i,j+1) + 0.4*ut.get(i+1,j))
     if curr_val > value:
         value, direction = curr_val, 3
 
@@ -24,8 +25,8 @@ def move(i, j, ut, bo): # N = 0, L = 1, S = 2, O = 3
 
 
 def bellman_it(ut, bo):
-    nu = Utility(N,M, bo)
-    policy = [[0 for i in range(M)]for j in range(N)]
+    nu = Utility(N, M, bo)
+    policy = [[0 for i in range(M)]for j in range(N)] # There is no point of doing this everytime, but whatever
     for i in range(1, N+1):
         for j in range(1, M+1):
             if(bo.board[i][j].reset == False):
@@ -60,7 +61,7 @@ if __name__ == "__main__":
     
         for i in range(1, N+1):
             for j in range(1, M+1):
-                print(u.board[i][j], " ", end='')
+                print("%8.2f" % (u.board[i][j]), " ", end='')
             print()
         print()
 

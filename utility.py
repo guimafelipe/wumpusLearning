@@ -7,10 +7,11 @@ class Utility:
     
     def get(self, i, j):
         to_ret = -0.1
-        if (i < 0 or i >= self.n) and (j < 0 or j >= self.m):
+        if (i < 0 or i >= self.n) and (j < 0 or j >= self.m): # Detect wall
             to_ret -= 10
-        elif self.info.board[i][j].reset:
-            return self.info.board[i][j].r
+        elif self.info.board[i][j].reset: # Detect wumpus or gold
+            return to_ret + self.info.board[i][j].r # Just return the reinforciment
+        # Adjust bellow in case of wall
         if i < 0: i = 0
         if i >= self.n: i = self.n - 1
         if j < 0: j = 0
