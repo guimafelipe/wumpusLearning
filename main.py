@@ -45,7 +45,7 @@ arrow.set_colorkey((0,0,0))
 
 def move(i, j, ut, bo): # N = 0, L = 1, S = 2, O = 3
     rf = bo.board[i][j].r
-    gamma = 0.9
+    gamma = 1
     value, direction = rf + gamma*(0.6*ut.get(i-1,j) + 0.4*ut.get(i,j+1)), 0
 
     curr_val = rf + gamma*(0.6*ut.get(i,j-1) + 0.4*ut.get(i-1,j))

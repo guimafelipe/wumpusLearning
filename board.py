@@ -19,7 +19,7 @@ class Board:
             self.board[j][0].isWall = True
             self.board[j][m+1].isWall = True
     
-    def move(self, i, j):
+    def move(self, i, j): #indexado em 1
         if (i < 0 or i >= self.n) or (j < 0 or j >= self.m):
             return False, -10, False
         else:
