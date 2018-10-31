@@ -11,7 +11,7 @@ class Board:
         self.board = [[None for i in range(m+2)] for j in range(n+2)]
         for i in range(n+2):
             for j in range(m+2):
-                self.board[i][j] = Cell(-0.1, False, False)
+                self.board[i][j] = Cell(0, False, False)
         for i in range(m+2):
             self.board[0][i].isWall = True
             self.board[n+1][i].isWall = True

@@ -7,7 +7,7 @@ class Utility:
     
     def get(self, i, j): #indexado em 1
         to_ret = -0.1
-        if (i < 1 or i > self.n) and (j < 1 or j > self.m): # Detect wall
+        if (i < 1 or i > self.n) or (j < 1 or j > self.m): # Detect wall
             to_ret -= 10
         elif self.info.board[i][j].reset: # Detect wumpus or gold
             return to_ret + self.info.board[i][j].r # Just return the reinforciment

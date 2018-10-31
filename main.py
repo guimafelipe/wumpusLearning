@@ -95,7 +95,7 @@ if __name__ == "__main__":
         for j in range(1, M+1):
             print(b.board[i][j].r, " ", end='')
         print()
-    for k in range(100):
+    for k in range(200):
         u, policy = bellman_it(u, b)
     
         for i in range(1, N+1):
